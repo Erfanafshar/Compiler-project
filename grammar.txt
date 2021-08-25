@@ -1,0 +1,133 @@
+*1.
+	program → declist main ( ) block
+			| main ( ) block
+
+*2.
+	declist → dec 
+			| declist dec 
+		
+3.
+	dec → vardec 
+		| funcdec
+
+4.
+	type → int 
+		| float 
+		| bool
+
+5.
+	iddec → id 
+			| id [ exp ] 
+			| id=exp
+	
+6.
+	idlist → iddec 
+			| idlist , iddec
+	
+7.	
+	vardec → idlist :type ;
+
+*8.
+	funcdec → fun id (paramdecs): type block 
+			| fun id (): type block
+			| fun id (paramdecs) block
+			| fun id () block
+			
+*9.
+	paramdecs → paramdecslist 
+		
+10.
+	paramdecslist → paramdec 
+				| paramdecslist , paramdec
+		
+11.
+	paramdec → id : type 
+			| id [] : type
+
+*12.		
+	block → { stmtlist }
+		  | { }
+
+*13.
+	stmtlist → stmt 
+			| stmtlist stmt 
+
+@14.
+	
+
+*15.
+	case → where const: stmtlist
+		 | where const:
+
+*16.
+	cases → case 
+			| cases case 
+		
+*17. 
+	stmt → return exp ; 
+			| exp ;
+			| block 
+			| vardec 
+			| while (exp) stmt 
+			| on (exp) {cases }; 
+			| on (exp) { }; 
+			| for(exp ; exp ; exp) stmt 
+			| for( id in id) stmt 
+			| if (exp) stmt elseiflist 
+			| if (exp) stmt
+			| if (exp) stmt elseiflist else stmt 
+			| if (exp) stmt else stmt 
+			| print ( id) ;
+		
+*18.
+	elseiflist → elseif (exp) stmt 
+			| elseiflist elseif (exp) stmt 
+	
+#19.
+	relopexp → exp > exp 
+			|  exp < exp
+			|  exp != exp
+			|  exp == exp
+			|  exp <= exp
+			|  exp >= exp
+											
+
+#19.5
+	otherop → exp and exp
+			| exp or exp
+			| exp + exp
+			| exp - exp 
+			| exp * exp
+			| exp / exp
+			| exp % exp 
+											
+			
+@#20.
+	exp → id=exp 
+			| id [exp]=exp
+			| relopexp
+			| otherop  
+			| const 
+			| id 
+			| id [exp]
+			| id(explist) 
+			| (exp) 
+			| id() 
+			| - exp 
+			| not exp
+
+#21. 
+
+	
+22.
+	const → intnumber 
+			| floatnumber 
+			| True 
+			| False
+
+#23.
+	
+
+24.
+	explist → exp 
+			| explist,exp
